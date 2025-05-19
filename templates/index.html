@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Find the Nth Largest Number</title>
+</head>
+<body>
+  <h1>Nth Largest Number Finder</h1>
+  <form method="post">
+    <label>Enter numbers (comma- or space-separated):</label><br>
+    <textarea name="numbers" rows="3" cols="40">{{ request.form.numbers or '' }}</textarea><br><br>
+
+    <label>Enter n:</label>
+    <input type="number" name="n" value="{{ request.form.n or '' }}" required><br><br>
+
+    <button type="submit">Compute</button>
+  </form>
+
+  {% if error %}
+    <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+  {% endif %}
+
+  {% if result is not none %}
+    <p>The <strong>{{ request.form.n }}<sup>th</sup> largest</p>
+    <p>number is <strong>{{ result }}</strong>.</p>
+  {% endif %}
+</body>
+</html>
